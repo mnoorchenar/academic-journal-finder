@@ -1,66 +1,85 @@
 # 📚 Academic Journal Finder (Elsevier & Springer)
 
-This repository contains two Jupyter notebooks to help researchers find suitable journals for their papers based on keywords.  
-It automatically scrapes journal metadata from **Elsevier** and **Springer** platforms and saves it into SQLite databases.
-
----
+This repository provides tools to help researchers find suitable academic journals based on their research topics, using automatic web scraping for Elsevier and Springer.
 
 ## 🚀 Features
-- 🔎 Search journals using custom keywords.
-- 🏛️ Find journals from **Elsevier** and **Springer** databases.
-- 📊 Retrieve impact factor, cite score, acceptance time, downloads, journal type, and more.
-- 💾 Save all results locally into an SQLite database.
+- 🔎 Search for journals using custom keywords or journal names
+- 🏛️ Supports Elsevier and Springer platforms
+- 📊 Retrieve impact factors, cite scores, acceptance times, journal types, and more
+- 💾 Save all results locally into an SQLite database
+
+## 📂 Repository Contents
+- `Elsevier.ipynb` — Journal Finder for Elsevier
+- `Springer.ipynb` — Journal Finder for Springer
+
+## 📥 Input and 📤 Output Details
+
+### Elsevier Journal Finder
+
+**Input Required:**
+- A list of **journal names** and **publication frequency**.
+- You can edit the provided dictionary in the notebook.
+
+Example:
+```python
+journal_data = {
+  "Journal Name": ["Applied Energy", "Energy", "Renewable Energy"],
+  "Frequency": [248, 204, 74]
+}
+```
+
+**Output Generated:**
+- Creates an SQLite database file named `elsevier.db`.
+- Stores journal information including:
+  - Journal name
+  - Impact factor
+  - CiteScore
+  - Time to first decision
+  - Time to acceptance
+  - Acceptance rate
+  - Journal type (Open Access, Subscription, Hybrid)
+  - Direct journal link
 
 ---
 
-## 📂 Contents
-- `Elsevier.ipynb` — Find journals and scrape metadata from Elsevier's Journal Finder.
-- `Springer.ipynb` — Find journals and scrape metadata from Springer's search engine.
+### Springer Journal Finder
 
----
+**Input Required:**
+- A list of **keywords or phrases** related to your research field.
+- You can edit the `keywords` list in the notebook.
 
-## 📥 Inputs
-- **Elsevier**:  
-  A manually prepared list of **journal names** with their **publication frequencies** inside the code (you can edit it).
+Example:
+```python
+keywords = ["energy", "deep learning"]
+```
 
-- **Springer**:  
-  A list of **search keywords** for building a search URL dynamically (you can edit the list).
+**Output Generated:**
+- Creates an SQLite database file named `springer.db`.
+- Stores journal and paper information including:
+  - Journal name
+  - Journal link
+  - Paper title
+  - Paper link
+  - Publication year
+  - Publishing model
+  - Impact factor
+  - 5-year impact factor
+  - Time to first decision
+  - Number of downloads
 
----
-
-## 📤 Outputs
-- **Elsevier**:
-  - An SQLite database file `elsevier.db`.
-  - Contains journal name, impact factor, cite score, time to first decision, time to acceptance, acceptance rate, type (Open Access, Subscription, Hybrid), and journal link.
-
-- **Springer**:
-  - An SQLite database file `springer.db`.
-  - Contains journal name, journal link, sample paper title, paper link, publication year, publishing model, journal impact factor, 5-year impact factor, time to first decision, and download counts.
-
----
-
-## 🛠️ How to Use
-1. **Install dependencies**:
+## 🛠️ How to Run
+1. Install the required Python packages:
    ```bash
    pip install pandas selenium beautifulsoup4 webdriver-manager
    ```
-
-2. **Open** either `Elsevier.ipynb` or `Springer.ipynb` in Jupyter Notebook or JupyterLab.
-
-3. **Modify inputs** if needed:
-   - For Elsevier: Edit the `journal_data` dictionary (journal names and frequencies).
-   - For Springer: Edit the `keywords` list (your research topics).
-
-4. **Run** the notebook cells.
-5. **Wait** while the tool automatically scrapes data and saves it into a database.
-
-⚡ Chrome will open automatically during scraping; no manual browser control needed.
-
----
+2. Open either `Elsevier.ipynb` or `Springer.ipynb` in Jupyter Notebook or JupyterLab.
+3. Edit the input fields (`journal_data` or `keywords`) as needed.
+4. Run the notebook cells step-by-step.
+5. Wait for scraping to complete. Chrome browser will be controlled automatically.
 
 ## ⚠️ Disclaimer
-This tool is developed for **personal academic use only**.  
+This tool is intended for **personal academic use only**.  
 It scrapes publicly available information to assist researchers in finding appropriate journals.  
-The developer takes **no responsibility for any misuse** or for any violation of third-party platform terms.  
-Users are responsible for complying with the Elsevier and Springer platforms' terms and conditions.
+The developer takes **no responsibility for misuse** or for any violations of publisher terms and conditions.  
+Use this tool responsibly and comply with the rules of Elsevier and Springer platforms.
 
